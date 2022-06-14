@@ -57,11 +57,11 @@ LIMIT 5;
 ``` SQL
 CREATE TABLE Shoes
     (
-    Id      char(10)      PRIMARY KEY,
-    Brand   char(10)      NOT NULL,
-    Color   char(250)     NOT NULL,
-    Price   decimal(8,2)  NOT NULL,
-    Desc    Varchar(750)  NULL
+    Id          char(10)        PRIMARY KEY,
+    Brand       char(10)        NOT NULL,
+    Color       char(250)       NOT NULL,
+    Price       decimal(8,2)    NOT NULL,
+    Descript    Varchar(750)    NULL
     );
 ```
 ### Adding data into the table
@@ -72,7 +72,7 @@ INSERT INTO Shoes
         Brand,
         Color,
         Price,
-        Desc
+        Descript
        )
 VALUES ('892071',
         'Gucci',
@@ -80,4 +80,19 @@ VALUES ('892071',
         '695.00',
         NULL
        );
+```
+### Temporary table
+- Temporary table will be deleted when current session terminate
+- Benefit of temporary table
+  - Faster than creating a real table
+  - Useful for complex queries using subset of tables and joins   
+
+Create a temporary table from a subset of another table
+``` SQL
+CREATE TEMPORARY TABLE Sandals AS
+    (
+        SELECT *
+        FROM shoes
+        WHERE shoe_type = 'sandals'
+    )
 ```
