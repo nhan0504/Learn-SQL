@@ -51,3 +51,33 @@ SELECT prod_name
 FROM Products
 LIMIT 5;
 ```
+
+## **Tables**
+### Create new table
+``` SQL
+CREATE TABLE Shoes
+    (
+    Id      char(10)      PRIMARY KEY,
+    Brand   char(10)      NOT NULL,
+    Color   char(250)     NOT NULL,
+    Price   decimal(8,2)  NOT NULL,
+    Desc    Varchar(750)  NULL
+    );
+```
+### Adding data into the table
+``` SQL
+INSERT INTO Shoes
+       (
+        Id,
+        Brand,
+        Color,
+        Price,
+        Desc
+       )
+VALUES ('892071',
+        'Gucci',
+        'Pink',
+        '695.00',
+        NULL
+       );
+```
