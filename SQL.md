@@ -9,19 +9,19 @@
   - Update data: Insert new data
 ### **Relational database vs Transactional database**
 
-<center> Relational             | <center> Transaction
+| <center> Relational             | <center> Transaction |
 --------------------------------|---------------------
-Show relatinship between tables | More like operational database
-Optimize for query -> Easier to access data | Good for reading and writting rows quickly
+| Show relatinship between tables | More like operational database |
+| Optimize for query -> Easier to access data | Good for reading and writting rows quickly |
 
 ## **Data model building blocks**
 
-<center> Entity | <center> Attribute | <center> Relationship
+| <center> Entity | <center> Attribute | <center> Relationship |
 -------|-----------|-------------
-Person, place, event, ... that are unique and distinguishable | Characteristic of an entity | Relation between entities
-|||One-to-many (Eg: 1 costumers have many invoices)
-|||Many-to-many (Eg: Many students to many classes: 1 student can belong to many classes, and 1 class can have many students)
-|||One-to-one (Eg: Each store has 1 manager)
+|Person, place, event, ... that are unique and distinguishable | Characteristic of an entity | Relation between entities |
+|||One-to-many (Eg: 1 costumers have many invoices) |
+|||Many-to-many (Eg: Many students to many classes: 1 student can belong to many classes, and 1 class can have many students) |
+|||One-to-one (Eg: Each store has 1 manager) |
 
 ### **Primary key and Foreign key**
 - Primary key: A column (set of columns) whose values uniquely identify every row in the tables
