@@ -17,6 +17,7 @@
 - [Filtering](#filtering)
   - [Operation](#operation)
   - [Wildcard](#wildcard)
+- [Sorting](#sorting)
 # Overview
 ## What is SQL
 - SQL (Structured Query Language): A standard language for relational database
@@ -242,3 +243,17 @@ WHERE text LIKE '%word';
 
 > - Wildcard takes longer to run than using operators like `>, <, =`    
 > - Wildcards are different depending on the database management system using
+
+# Sorting
+- `ORDER BY` operation
+  - Takes 1 or more columns (Add comma if more than 1 columns)
+  - Can sort by a column not retrieved
+  - Must be the last clause in a `SELECT` statment
+- Sort direction:
+  - `DESC`: Descending order
+  - `ASC`: Ascending order
+``` SQL
+SELECT product_name
+FROM Products
+ORDER BY Price ASC;
+```
