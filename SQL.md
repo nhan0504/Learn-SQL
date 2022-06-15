@@ -1,31 +1,35 @@
-- [**Overview**](#overview)
-  - [**What is SQL**](#what-is-sql)
-  - [**Relational database vs Transactional database**](#relational-database-vs-transactional-database)
-- [**Data model building blocks**](#data-model-building-blocks)
-  - [**Primary key and Foreign key**](#primary-key-and-foreign-key)
-- [**ER Diagram**](#er-diagram)
-- [**Retrieve data**](#retrieve-data)
-- [**Tables**](#tables)
-  - [**Create new table**](#create-new-table)
-  - [**Add data into the table**](#add-data-into-the-table)
-  - [**Temporary table**](#temporary-table)
+- [Overview](#overview)
+  - [What is SQL](#what-is-sql)
+  - [Relational database vs Transactional database](#relational-database-vs-transactional-database)
+- [Data model building blocks](#data-model-building-blocks)
+  - [Primary key and Foreign key](#primary-key-and-foreign-key)
+- [ER Diagram](#er-diagram)
+- [Retrieve data](#retrieve-data)
+- [Tables](#tables)
+  - [Create new table](#create-new-table)
+  - [Add data into the table](#add-data-into-the-table)
+  - [Delete table](#delete-table)
+  - [Truncate table](#truncate-table)
+  - [Alter table](#alter-table)
+  - [Permission](#permission)
+  - [Temporary table](#temporary-table)
 - [Comment](#comment)
-# **Overview**
-## **What is SQL**
+# Overview
+## What is SQL
 - SQL (Structured Query Language): A standard language for relational database
 - A non-procedural language -> Won't be able to write application with it
 - Usage:
   - Read/retrieve data
   - Write data: Add data to a table
   - Update data: Insert new data
-## **Relational database vs Transactional database**
+## Relational database vs Transactional database
 
 | <center> Relational             | <center> Transaction |
 --------------------------------|---------------------
 | Show relatinship between tables | More like operational database |
 | Optimize for query -> Easier to access data | Good for reading and writting rows quickly |
 
-# **Data model building blocks**
+# Data model building blocks
 
 | <center> Entity | <center> Attribute | <center> Relationship |
 -------|-----------|-------------
@@ -34,15 +38,15 @@
 |||Many-to-many (Eg: Many students to many classes: 1 student can belong to many classes, and 1 class can have many students) |
 |||One-to-one (Eg: Each store has 1 manager) |
 
-## **Primary key and Foreign key**
+## Primary key and Foreign key
 - Primary key: A column (set of columns) whose values uniquely identify every row in the tables
 - Foreign key: One or more columns to identify a row in another table    
-# **ER Diagram**
+# ER Diagram
 ![ER Diagram](Diagram.JPG "Example diagram")
 
 ![ER Diagram Notation](Notation.JPG "Relationship notations")
 
-# **Retrieve data**
+# Retrieve data
 - SELECT statement has 2 components: What you want and where you want to select it from
 - Retrieve data about product from a table named Products
 ``` SQL
@@ -63,8 +67,8 @@ FROM Products
 LIMIT 5;
 ```
 
-# **Tables**
-## **Create new table**
+# Tables
+## Create new table
 - Specify what data type can be accepted (Eg: NULL -> Accept NULL value)
 ``` SQL
 CREATE TABLE Shoes
@@ -76,7 +80,7 @@ CREATE TABLE Shoes
     Descript    Varchar(750)    NULL
     );
 ```
-## **Add data into the table**
+## Add data into the table
 ``` SQL
 INSERT INTO Shoes
        (
@@ -93,7 +97,33 @@ VALUES ('892071',
         NULL
        );
 ```
-## **Temporary table**
+
+## Delete table
+``` SQL
+DROP TABLE Shoes;
+```
+
+## Truncate table
+Clear all the data in the table
+``` SQL
+TRUNCATE TABLE Shoes;
+```
+
+## Alter table
+Edit an existing table like adding columns, rename, ...
+``` SQL
+ALTER TABLE Shoes RENAME TO products;
+```
+
+## Permission
+``` SQL
+-- Grant permission
+GRANT ALL PRIVILEGES ON Shoes TO authorized_users;
+-- Remove access
+REVOKE ALL PRIVILEGES ON Shoes TO authorized_users;
+```
+
+## Temporary table
 - Temporary table will be deleted when current session terminate
 - Benefit of temporary table
   - Faster than creating a real table
