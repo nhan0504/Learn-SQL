@@ -4,6 +4,7 @@
 - [Data model building blocks](#data-model-building-blocks)
   - [Primary key and Foreign key](#primary-key-and-foreign-key)
 - [ER Diagram](#er-diagram)
+- [Comment](#comment)
 - [Retrieve data](#retrieve-data)
 - [Tables](#tables)
   - [Create new table](#create-new-table)
@@ -13,7 +14,7 @@
   - [Alter table](#alter-table)
   - [Permission](#permission)
   - [Temporary table](#temporary-table)
-- [Comment](#comment)
+- [Filtering](#filtering)
 # Overview
 ## What is SQL
 - SQL (Structured Query Language): A standard language for relational database
@@ -33,18 +34,34 @@
 
 | <center> Entity | <center> Attribute | <center> Relationship |
 -------|-----------|-------------
-|Person, place, event, ... that are unique and distinguishable | Characteristic of an entity | Relation between entities |
-|||One-to-many (Eg: 1 costumers have many invoices) |
-|||Many-to-many (Eg: Many students to many classes: 1 student can belong to many classes, and 1 class can have many students) |
-|||One-to-one (Eg: Each store has 1 manager) |
+|Person, place, event, ... that are unique and distinguishable | Characteristic of an entity | Relation between entities <ul><li>One-to-many (Eg: 1 costumers have many invoices)</li>  <li>Many-to-many (Eg: Many students to many classes: 1 student can belong to many classes, and 1 class can have many students)</li> <li>One-to-one (Eg: Each store has 1 manager)</li></ul>|
 
 ## Primary key and Foreign key
 - Primary key: A column (set of columns) whose values uniquely identify every row in the tables
 - Foreign key: One or more columns to identify a row in another table    
 # ER Diagram
+<big> Show entities and relationship between them
 ![ER Diagram](Diagram.JPG "Example diagram")
 
 ![ER Diagram Notation](Notation.JPG "Relationship notations")
+# Comment
+<big> Single line comment: 2 dashes
+<small>
+``` SQL
+SELECT prod_name,
+     --prod_id,
+       prod_price
+FROM Products;
+```
+<big> Multi-line commnent
+<small>
+``` SQL
+SELECT prod_name,
+    /* prod_id,
+       prod_price
+    */
+FROM Products;
+```
 
 # Retrieve data
 - SELECT statement has 2 components: What you want and where you want to select it from
@@ -139,21 +156,60 @@ CREATE TEMPORARY TABLE Sandals AS
     )
 ```
 
-# Comment
-<big> Single line comment: 2 dashes
-<small>
+
+# Filtering
 ``` SQL
-SELECT prod_name,
-     --prod_id,
-       prod_price
-FROM Products;
+SELECT column_name
+FROM table_name
+WHERE column_name operator value;
 ```
-<big> Multi-line commnent
-<small>
+
+| Operator | Description | 
+| ---------|------------ |
+| =        | Equal |
+| <> or !=| Not equal |
+| > | Greater than |
+| < | Smaller than |
+| >= | Greater than or equal |
+| <= | Smaller than or equal |
+| `BETWEEN` | An inclusive range |
+| `IS NULL` | A NULL value |
+| `IN` | Look for specific values |
+| `OR` | A or B |
+| `AND` | A and B |
+> `IN` vs `OR`
+> - `IN` can list more options   
+> - `IN` execute faster than `OR`   
+> - Can use another `SELECT` statment for subqueries using `IN`
 ``` SQL
-SELECT prod_name,
-    /* prod_id,
-       prod_price
-    */
-FROM Products;
+SELECT ProductName,
+       Price,
+       SupplierID
+FROM Products
+WHERE ProductName = 'Tofu';
+
+SELECT ProductName,
+       Price,
+       SupplierID
+FROM Products
+WHERE Price BETWEEN 75 AND 100;
+
+SELECT ProductName,
+       Price,
+       SupplierID
+FROM Products
+WHERE SupplierID IN (1, 10, 12);
+
+SELECT ProductName,
+       Price,
+       SupplierID
+FROM Products
+WHERE ProductName = 'Tofu' OR 'Konbu';
+
+SELECT ProductName,
+       Price,
+       SupplierID
+FROM Products
+WHERE (SupplierID = 9 OR 11)
+AND Price < 100;
 ```
