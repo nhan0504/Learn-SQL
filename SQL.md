@@ -9,6 +9,7 @@
   - [**Create new table**](#create-new-table)
   - [**Add data into the table**](#add-data-into-the-table)
   - [**Temporary table**](#temporary-table)
+- [Comment](#comment)
 # **Overview**
 ## **What is SQL**
 - SQL (Structured Query Language): A standard language for relational database
@@ -106,4 +107,23 @@ CREATE TEMPORARY TABLE Sandals AS
         FROM shoes
         WHERE shoe_type = 'sandals'
     )
+```
+
+# Comment
+<big> Single line comment: 2 dashes
+<small>
+``` SQL
+SELECT prod_name,
+     --prod_id,
+       prod_price
+FROM Products;
+```
+<big> Multi-line commnent
+<small>
+``` SQL
+SELECT prod_name,
+    /* prod_id,
+       prod_price
+    */
+FROM Products;
 ```
