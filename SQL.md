@@ -15,6 +15,8 @@
   - [Permission](#permission)
   - [Temporary table](#temporary-table)
 - [Filtering](#filtering)
+  - [Operation](#operation)
+  - [Wildcard](#wildcard)
 # Overview
 ## What is SQL
 - SQL (Structured Query Language): A standard language for relational database
@@ -163,7 +165,7 @@ SELECT column_name
 FROM table_name
 WHERE column_name operator value;
 ```
-
+## Operation
 | Operator | Description | 
 | ---------|------------ |
 | =        | Equal |
@@ -213,3 +215,30 @@ FROM Products
 WHERE (SupplierID = 9 OR 11)
 AND Price < 100;
 ```
+
+## Wildcard
+- Wildcard: Special character to match parts of a value   
+- `LIKE` operator: Only use for string, cannot use with non-text datatype
+
+| Wildcard `%` | Action |
+|----------|--------|
+| `%word` | Grab anything ending with *word* |
+| `word%` | Grab anything starting with *word* |
+| `%word%` | Grab anything before and after *word*|
+| `t%@gmail.com` | Grabs all the email that start with *t* |
+> `%` wildcard will not match NULL values
+
+``` SQL
+SELECT sentences 
+FROM table_name
+WHERE text LIKE '%word';
+```
+
+| Wildcard `_` | Action |
+|----------|--------|
+| `_word` | Grab 1 character before *word* |
+| `word_` | Grab 1 character after *word* |
+| `_word_` | Grab 1 character before and after *word*|
+
+> - Wildcard takes longer to run than using operators like `>, <, =`    
+> - Wildcards are different depending on the database management system using
