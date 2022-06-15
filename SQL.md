@@ -21,6 +21,7 @@
   - [Sorting](#sorting)
   - [Math operations](#math-operations)
   - [Aggregate Function](#aggregate-function)
+  - [Grouping data](#grouping-data)
 # Overview
 ## What is SQL
 - SQL (Structured Query Language): A standard language for relational database
@@ -163,6 +164,7 @@ CREATE TEMPORARY TABLE Sandals AS
 ```
 # Data manipulation
 ## Filtering
+- `WHERE`: Filters rows
 ``` SQL
 SELECT column_name
 FROM table_name
@@ -307,4 +309,25 @@ FROM Products;
 
 SELECT COUNT(DISTINCT CustomerID) AS total_costumer
 FROM Customers;
+```
+
+## Grouping data
+- `GROUP BY` 
+  - Can take multiple columns
+  - NULL is a group by itself -> if missing data in some column -> It won't be included in the group
+``` SQL
+-- Count the number of customers in the region
+SELECT Region,
+       COUNT(CustomerID) AS total_customers
+FROM Customers
+GROUP BY Region;
+```
+- `HAVING`: Filter group
+``` SQL
+-- Count the number of orders for customers -> Return the customers who've had >= 2 orders
+SELECT CustomerID,
+       COUNT(*) AS orders
+FROM orders
+GROUP BY CutomerID
+HAVING COUNT (*) >= 2;
 ```
