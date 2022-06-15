@@ -14,11 +14,13 @@
   - [Alter table](#alter-table)
   - [Permission](#permission)
   - [Temporary table](#temporary-table)
-- [Filtering](#filtering)
-  - [Operation](#operation)
-  - [Wildcard](#wildcard)
-- [Sorting](#sorting)
-- [Math operations](#math-operations)
+- [Data manipulation](#data-manipulation)
+  - [Filtering](#filtering)
+    - [Operation](#operation)
+    - [Wildcard](#wildcard)
+  - [Sorting](#sorting)
+  - [Math operations](#math-operations)
+  - [Aggregate Function](#aggregate-function)
 # Overview
 ## What is SQL
 - SQL (Structured Query Language): A standard language for relational database
@@ -159,15 +161,14 @@ CREATE TEMPORARY TABLE Sandals AS
         WHERE shoe_type = 'sandals'
     )
 ```
-
-
-# Filtering
+# Data manipulation
+## Filtering
 ``` SQL
 SELECT column_name
 FROM table_name
 WHERE column_name operator value;
 ```
-## Operation
+### Operation
 | Operator | Description | 
 | ---------|------------ |
 | =        | Equal |
@@ -218,7 +219,7 @@ WHERE (SupplierID = 9 OR 11)
 AND Price < 100;
 ```
 
-## Wildcard
+### Wildcard
 - Wildcard: Special character to match parts of a value   
 - `LIKE` operator: Only use for string, cannot use with non-text datatype
 
@@ -245,7 +246,7 @@ WHERE text LIKE '%word';
 > - Wildcard takes longer to run than using operators like `>, <, =`    
 > - Wildcards are different depending on the database management system using
 
-# Sorting
+## Sorting
 - `ORDER BY` operation
   - Takes 1 or more columns (Add comma if more than 1 columns)
   - Can sort by a column not retrieved
@@ -259,9 +260,9 @@ FROM Products
 ORDER BY Price ASC;
 ```
 
-# Math operations
-| Operation | Function |
-|-----------|----------|
+## Math operations
+| Operation | Description |
+|-----------|-------------|
 |+| Addition |
 |-| Subtraction |
 |*| Multiplication |
@@ -281,3 +282,29 @@ Result:
 | 432959 | 8 | 0.25 | 2 |
 | 738207 | 10 | 0.5 | 5 |
 
+## Aggregate Function
+- Use to summerize data
+  
+| Function | Description |
+|-----------|----------|
+|`AVG()`| Average a column of values |
+|`COUNT()`| Count the number of values |
+|`MIN()`| Find the minimum value |
+|`MAX()`| Find the maximum value |
+|`SUM()`| Sum the columns values|
+|`DISTINCT`| Only grab duplicate value once <br> Cannot use with `COUNT(*)` |
+
+``` SQL
+SELECT AVG(UnitPrice) AS avg_price
+FROM Products;
+
+SELECT COUNT(*) AS total_product
+FROM Products;
+
+SELECT MAX(UnitPrice) AS max_prod_price,
+       MIN(UnitPrice) AS min_prod_price
+FROM Products;
+
+SELECT COUNT(DISTINCT CustomerID) AS total_costumer
+FROM Customers;
+```
