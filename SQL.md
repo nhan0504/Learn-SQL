@@ -18,6 +18,7 @@
   - [Operation](#operation)
   - [Wildcard](#wildcard)
 - [Sorting](#sorting)
+- [Math operations](#math-operations)
 # Overview
 ## What is SQL
 - SQL (Structured Query Language): A standard language for relational database
@@ -257,3 +258,26 @@ SELECT product_name
 FROM Products
 ORDER BY Price ASC;
 ```
+
+# Math operations
+| Operation | Function |
+|-----------|----------|
+|+| Addition |
+|-| Subtraction |
+|*| Multiplication |
+|/| Division |
+
+``` SQL
+SELECT ProductID,
+       UnitsOnOrder,
+       UnitPrice,
+       UnitsOnOrder * UnitPrice AS Total_Order_Cost
+From Products;
+```
+Result:
+
+| ProductID | UnitsOnOrder | UnitPrice | Total_Order_Cost |
+|-----------|--------------|-----------|------------------|
+| 432959 | 8 | 0.25 | 2 |
+| 738207 | 10 | 0.5 | 5 |
+
