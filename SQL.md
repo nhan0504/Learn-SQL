@@ -471,3 +471,33 @@ WHERE country = 'Germany'
 ORDER BY city;
 ```
 ![Summary of type of joins](Joins.JPG "Joins summary")
+
+# Data modification
+## String concatenation
+``` SQL
+SELECT FirstName + LastName
+FROM Customers;
+```
+## Trimming String
+`TRIM`: Trim left and right trailing space of a string
+``` SQL
+SELECT TRIM("   Hello World   ") AS Trimmed;
+```
+## Substring
+`SUBSTR`(string name, starting position, number of character to be returned)
+> SQL count from 1 instead of 0
+``` SQL
+SELECT FirstName
+SUBSTR(FirstName,1,3)
+FROM Employees;
+```
+Result
+|FirstName|substr(FirstName,1,3)|
+|---------|---------------------|
+|Nancy|Nan|
+|Daniel|Dan|
+## Upper and Lower
+``` SQL
+SELECT UPPER(column_name) FROM table_name;
+SELECT LOWER(column_name) FROM table_name;
+```
