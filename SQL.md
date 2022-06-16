@@ -33,6 +33,16 @@
   - [Right join](#right-join)
   - [Full outer join](#full-outer-join)
   - [Union](#union)
+- [Data modification](#data-modification)
+  - [String concatenation](#string-concatenation)
+  - [Trimming String](#trimming-string)
+  - [Substring](#substring)
+  - [Upper and Lower](#upper-and-lower)
+- [Date and Time](#date-and-time)
+- [Case statement](#case-statement)
+  - [Bin grouping](#bin-grouping)
+- [Create view](#create-view)
+
 # Overview
 ## What is SQL
 - SQL (Structured Query Language): A standard language for relational database
@@ -564,7 +574,7 @@ SELECT trackID,
 FROM Tracks;    
 ```
 
-# View statement
+# Create view
 - Create a temporary illusion of the database -> Won't be written to the database
 - When database connection end -> The view will be removed
 - Benefit:  
