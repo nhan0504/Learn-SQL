@@ -25,6 +25,7 @@
 - [Subqueries](#subqueries)
 - [Join](#join)
   - [Cartesian (Cross) Join](#cartesian-cross-join)
+  - [Inner Join](#inner-join)
 # Overview
 ## What is SQL
 - SQL (Structured Query Language): A standard language for relational database
@@ -384,4 +385,20 @@ SELECT prod_name,
        unit_price,
        company_name
 FROM supplier CROSS JOIN producst;
+```
+
+## Inner Join
+- Inner join: Select records that have matching values in both table
+``` SQL
+SELECT Suppliers.company_name,
+       prod_name
+FROM Suppliers INNER JOIN Products
+ON Suppliers.supplierID = Products.supplierID
+```
+- Join multiple table
+  - Prequalify names -> Make sure which column is coming from what table (Eg: Orders o, o.orderID)
+``` SQL
+SELECT o.orderID, c.company_name, e.last_name
+FROM ((Orders o INNER JOIN Customers c ON o.customerID = c.customerID)
+INNER JOIN Employees e ON o.employeeID = e.employeeID);
 ```
