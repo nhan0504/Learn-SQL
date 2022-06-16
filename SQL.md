@@ -392,6 +392,7 @@ ORDER BY customer_name
 ```
 
 # Join
+> Joins are usually faster than subqueries, but subqueries are more reliable
 ## Cartesian (Cross) Join
 - Cross Join: Join each row from a table to all the rows in another table => Table 1 has a rows, table 2 has b rows -> Create a x b rows
 > Doesn't match anything -> Just multiply this table with another one
@@ -399,7 +400,7 @@ ORDER BY customer_name
 SELECT prod_name,
        unit_price,
        company_name
-FROM supplier CROSS JOIN producst;
+FROM suppliers CROSS JOIN products;
 ```
 
 ## Inner Join
@@ -469,3 +470,4 @@ FROM Suppliers
 WHERE country = 'Germany'
 ORDER BY city;
 ```
+![Summary of type of joins](Joins.JPG "Joins summary")
