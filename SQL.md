@@ -32,6 +32,7 @@
   - [Left join](#left-join)
   - [Right join](#right-join)
   - [Full outer join](#full-outer-join)
+  - [Union](#union)
 # Overview
 ## What is SQL
 - SQL (Structured Query Language): A standard language for relational database
@@ -451,4 +452,20 @@ SELECT c.customerName, o.orderID
 FROM Customers c
 FULL OUTER JOIN Orders o ON c.customerID = o.customerID
 ORDER BY c.customerName;
+```
+
+## Union
+- Union: Combine the result of 2 or more set into one
+  - Each `SELECT` Statement with `UNION` must have the same number of columns
+  - Columns must have similar data
+  - Columns must be in the same order
+``` SQL
+SELECT city, country
+FROM Customers 
+WHERE country = 'Germany'
+UNION
+SELECT city, country
+FROM Suppliers 
+WHERE country = 'Germany'
+ORDER BY city;
 ```
