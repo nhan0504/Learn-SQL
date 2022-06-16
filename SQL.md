@@ -22,6 +22,7 @@
   - [Math operations](#math-operations)
   - [Aggregate Function](#aggregate-function)
   - [Grouping data](#grouping-data)
+- [Subqueries](#subqueries)
 # Overview
 ## What is SQL
 - SQL (Structured Query Language): A standard language for relational database
@@ -234,9 +235,9 @@ AND Price < 100;
 > `%` wildcard will not match NULL values
 
 ``` SQL
-SELECT sentences 
+SELECT column_name 
 FROM table_name
-WHERE text LIKE '%word';
+WHERE column_name LIKE '%word';
 ```
 
 | Wildcard `_` | Action |
@@ -330,4 +331,19 @@ SELECT CustomerID,
 FROM orders
 GROUP BY CutomerID
 HAVING COUNT (*) >= 2;
+```
+
+# Subqueries
+- Subqueries: Queries embeded in other queries
+  - Use to get and merge data from multiple tables
+  - Select specific records or columns and then use that as a criteria for filtering the next thing to select
+``` SQL
+--Get the region and company (Customers table) of customers that have freight > 100 (Order table)
+SELECT CustomerID,
+       CompanyName,
+       Region
+FROM Customers
+WHERE customerID IN (SELECT customerID
+                     FROM Orders
+                     WHERE Freight > 100);
 ```
