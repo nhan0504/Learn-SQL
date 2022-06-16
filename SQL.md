@@ -524,3 +524,43 @@ Get hour, minute, second, millisecond for the current date
 ``` SQL
 SELECT STRFTIME('%H %M %S %s', 'now')
 ```
+
+# Case statement
+- Like If-else statement
+- Can be used in SELECT, INSERT, UPDATE, and DELETE statements
+``` SQL
+CASE 
+WHEN C1 THEN E!
+WHEN C2 THEN E2
+...
+ELSE [result else]
+END
+```
+``` SQL
+SELECT employeeID,
+       city,
+       CASE City
+          WHEN 'Calgary' THEN 'Calgary'
+       ELSE 'Other'
+          END calgary
+FROM Employees
+```
+Result
+| EmployeeID| city| calgary|
+|-----------|-----|--------|
+|1| Edmonton | Other|
+|4| Calgary | Calgary |
+|7| Lethbridge | Other |
+## Bin grouping 
+``` SQL
+SELECT trackID,
+       bytes,
+       CASE 
+       WHEN bytes < 300000 THEN 'small'
+       WHEN bytes >= 300001 AND bytes <= 500000 THEN 'medium'
+       WHEN bytes > 500001 THEN 'large'
+       ELSE 'Other'
+       END bytesCategory
+FROM Tracks;    
+```
+
