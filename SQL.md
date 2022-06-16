@@ -497,7 +497,30 @@ Result
 |Nancy|Nan|
 |Daniel|Dan|
 ## Upper and Lower
+- Example usage: Working with names, some people capitalize their name, some don't -> Change to all uppercase or lowercase to make it easier to compare and work with
 ``` SQL
 SELECT UPPER(column_name) FROM table_name;
 SELECT LOWER(column_name) FROM table_name;
+```
+
+# Date and Time
+`STRFTIME`: Extract certain element of a date/time string
+``` SQL
+SELECT Birthdate,
+       STRFTIME('%Y', Birthdate) AS Year,
+       STRFTIME('%m' Birthdate) AS Month,
+       STRFTIME('%d', Birthdate) AS Day
+FROM Employees;
+```
+Get current date
+``` SQL
+SELECT DATE('now')
+```
+Get year, month, day for the current date
+``` SQL
+SELECT STRFTIME('%Y %m %d', 'now')
+```
+Get hour, minute, second, millisecond for the current date
+``` SQL
+SELECT STRFTIME('%H %M %S %s', 'now')
 ```
