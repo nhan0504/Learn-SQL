@@ -23,6 +23,8 @@
   - [Aggregate Function](#aggregate-function)
   - [Grouping data](#grouping-data)
 - [Subqueries](#subqueries)
+- [Join](#join)
+  - [Cartesian (Cross) Join](#cartesian-cross-join)
 # Overview
 ## What is SQL
 - SQL (Structured Query Language): A standard language for relational database
@@ -371,4 +373,15 @@ SELECT customer_name,
         WHERE Orders.customerID = Customers.customerID) AS orders
 FROM Customers
 ORDER BY customer_name
+```
+
+# Join
+## Cartesian (Cross) Join
+- Cross Join: Join each row from a table to all the rows in another table => Table 1 has a rows, table 2 has b rows -> Create a x b rows
+> Doesn't match anything -> Just multiply this table with another one
+``` SQL
+SELECT prod_name,
+       unit_price,
+       company_name
+FROM supplier CROSS JOIN producst;
 ```
