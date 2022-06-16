@@ -4,7 +4,9 @@
 - [Data model building blocks](#data-model-building-blocks)
   - [Primary key and Foreign key](#primary-key-and-foreign-key)
 - [ER Diagram](#er-diagram)
-- [Comment](#comment)
+- [Comment and Alias](#comment-and-alias)
+  - [Comment](#comment)
+  - [Alias](#alias)
 - [Retrieve data](#retrieve-data)
 - [Tables](#tables)
   - [Create new table](#create-new-table)
@@ -26,6 +28,10 @@
 - [Join](#join)
   - [Cartesian (Cross) Join](#cartesian-cross-join)
   - [Inner Join](#inner-join)
+  - [Self join](#self-join)
+  - [Left join](#left-join)
+  - [Right join](#right-join)
+  - [Full outer join](#full-outer-join)
 # Overview
 ## What is SQL
 - SQL (Structured Query Language): A standard language for relational database
@@ -55,7 +61,8 @@
 ![ER Diagram](Diagram.JPG "Example diagram")
 
 ![ER Diagram Notation](Notation.JPG "Relationship notations")
-# Comment
+# Comment and Alias
+## Comment
 <big> Single line comment: 2 dashes
 <small>
 ``` SQL
@@ -72,6 +79,13 @@ SELECT prod_name,
        prod_price
     */
 FROM Products;
+```
+
+## Alias
+``` SQL
+SELECT vender_name, pro_name, prod_price
+FROM Vendors AS v, Products AS p
+WHERE v.vendorID = p.vendorID;
 ```
 
 # Retrieve data
@@ -215,7 +229,7 @@ SELECT ProductName,
        Price,
        SupplierID
 FROM Products
-WHERE ProductName = 'Tofu' OR 'Konbu';
+WHERE ProductName = 'Tofu' OR ProductName = 'Konbu';
 
 SELECT ProductName,
        Price,
@@ -401,4 +415,40 @@ ON Suppliers.supplierID = Products.supplierID
 SELECT o.orderID, c.company_name, e.last_name
 FROM ((Orders o INNER JOIN Customers c ON o.customerID = c.customerID)
 INNER JOIN Employees e ON o.employeeID = e.employeeID);
+```
+
+## Self join
+- Self join: Join a table to iitelf
+``` SQL 
+SELECT A.customer_name AS customerName1,
+       B.customer_name AS customerName2,
+       A.city
+FROM Customers A, Customer B
+WHERE A.customerID = B.customerID
+AND A.city = B.city
+ORDER BY A.city
+```
+
+## Left join
+- Left join: Return records from the left table (Table 1) and matching records from right table (Table 2)
+- Eg: We have 2 tables: Customers and Orders. Some Customers have given their details but haven't made any order -> Their info wouldn't be on Orders table -> If we do Inner join -> Miss customer that haven't made order
+
+``` SQL
+SELECT c.customerName, o.orderID
+FROM Customers c
+LEFT JOIN Orders o ON c.customerID = o.customerID
+ORDER BY c.customerName;
+```
+
+## Right join
+- Right join: Return records from the right table (Table 2) and matching records from left table (Table 1)
+  - Can use Left join and just switch up the order of the table
+
+## Full outer join
+- Full outer join: Return records of both table if there is a match either in table 1 or table 2
+``` SQL
+SELECT c.customerName, o.orderID
+FROM Customers c
+FULL OUTER JOIN Orders o ON c.customerID = o.customerID
+ORDER BY c.customerName;
 ```
