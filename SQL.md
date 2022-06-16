@@ -337,6 +337,8 @@ HAVING COUNT (*) >= 2;
 - Subqueries: Queries embeded in other queries
   - Use to get and merge data from multiple tables
   - Select specific records or columns and then use that as a criteria for filtering the next thing to select
+> When nested subqueries too deeply -> Low performance    
+> Subquery `SELECT` can only retrieve 1 column
 ``` SQL
 --Get the region and company (Customers table) of customers that have freight > 100 (Order table)
 SELECT CustomerID,
@@ -346,4 +348,27 @@ FROM Customers
 WHERE customerID IN (SELECT customerID
                      FROM Orders
                      WHERE Freight > 100);
+```
+- Indent subqueries
+``` SQL
+SELECT CustomerID, Customer_contact
+FROM Customers
+WHERE CustomerID IN
+    SELECT CustomerID
+    FROM Orders
+    WHERE order_number IN
+       (SELECT order_number
+        FROM OrderItems
+        WHERE prod_name = 'Toothbrush');
+```
+
+- Subqueries for calculation
+``` SQL
+SELECT customer_name,
+       customer_state,
+       (SELECT COUNT(*) AS orders
+        FROM Orders
+        WHERE Orders.customerID = Customers.customerID) AS orders
+FROM Customers
+ORDER BY customer_name
 ```
