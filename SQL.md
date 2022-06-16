@@ -564,3 +564,20 @@ SELECT trackID,
 FROM Tracks;    
 ```
 
+# View statement
+- Create a temporary illusion of the database -> Won't be written to the database
+- When database connection end -> The view will be removed
+- Benefit:  
+  - Add or remove columns without changing the schema
+  - Simplify complex queries and calculation
+  - Get arounf some database-writting limitation
+``` SQL
+CREATE [TEMP] VIEW [IF NOT EXIST]
+view_name(column-name-list) AS 
+select-statement;
+```
+``` SQL
+CREATE VIEW my_view AS
+SELECT e.LastName
+FROM Employees;
+```
