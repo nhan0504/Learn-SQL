@@ -56,7 +56,14 @@
 | <center> Relational             | <center> Transaction |
 --------------------------------|---------------------
 | Show relatinship between tables | More like operational database |
-| Optimize for query -> Easier to access data | Good for reading and writting rows quickly |
+| Optimize for query -> Easier to access data | Good for reading and writing rows quickly | 
+
+## SQL vs NoSQL 
+| | SQL | NoSQL |
+|-|-----|-------|
+| Data storage | Store data in relational model with rows and columns| Encompasses a host of database like document, graph, key-value, column |
+| Schemas and flexibility | <li>Records conforms to fixed schema.</li><li>Each columns must be decided before data entry.</li><li> Each row must contain data for each column</li> | Each row (or equivalent) doesn't need to have value for each column |
+| Scalability | Scale vertically -> Need bigger server | Scale horizontally -> Adding more servers
 
 # Data model building blocks
 
