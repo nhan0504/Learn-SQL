@@ -1,6 +1,7 @@
 - [Overview](#overview)
   - [What is SQL](#what-is-sql)
   - [Relational database vs Transactional database](#relational-database-vs-transactional-database)
+  - [SQL vs NoSQL](#sql-vs-nosql)
 - [Data model building blocks](#data-model-building-blocks)
   - [Primary key and Foreign key](#primary-key-and-foreign-key)
 - [ER Diagram](#er-diagram)
@@ -10,13 +11,15 @@
 - [Retrieve data](#retrieve-data)
 - [Tables](#tables)
   - [Create new table](#create-new-table)
-  - [Add data into the table](#add-data-into-the-table)
   - [Delete table](#delete-table)
   - [Truncate table](#truncate-table)
   - [Alter table](#alter-table)
   - [Permission](#permission)
   - [Temporary table](#temporary-table)
 - [Data manipulation](#data-manipulation)
+  - [Insert](#insert)
+  - [Update](#update)
+  - [Delete](#delete)
   - [Filtering](#filtering)
     - [Operation](#operation)
     - [Wildcard](#wildcard)
@@ -140,23 +143,6 @@ CREATE TABLE Shoes
     Descript    Varchar(750)    NULL
     );
 ```
-## Add data into the table
-``` SQL
-INSERT INTO Shoes
-       (
-        Id,
-        Brand,
-        Color,
-        Price,
-        Descript
-       )
-VALUES ('892071',
-        'Gucci',
-        'Pink',
-        '695.00',
-        NULL
-       );
-```
 
 ## Delete table
 ``` SQL
@@ -199,6 +185,24 @@ CREATE TEMPORARY TABLE Sandals AS
     )
 ```
 # Data manipulation
+## Insert
+``` SQL
+INSERT INTO Shoes(Id, Brand, Color, Price, Descript)
+VALUES ('892071', 'Gucci', 'Pink', '695.00', NULL);
+```
+## Update
+``` SQL
+UPDATE [Table_Name] 
+SET [Column1] = [Value1], 
+    [Column2] = [Value2],
+    [ColumnN] = [ValueN]
+WHERE Condition
+```
+## Delete
+``` SQL
+Delete from [Table_Name]
+Where Condition
+```
 ## Filtering
 - `WHERE`: Filters rows
 ``` SQL
