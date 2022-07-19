@@ -158,6 +158,9 @@ TRUNCATE TABLE Shoes;
 ## Alter table
 Edit an existing table like adding columns, rename, ...
 ``` SQL
+-- Add column
+ALTER TABLE Shoes ADD purchaseDate date NOT NULL;
+-- Rename
 ALTER TABLE Shoes RENAME TO products;
 ```
 
