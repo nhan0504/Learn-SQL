@@ -160,6 +160,8 @@ Edit an existing table like adding columns, rename, ...
 ``` SQL
 -- Add column
 ALTER TABLE Shoes ADD purchaseDate date NOT NULL;
+-- Delete a column
+ALTER TABLE Shoes DROP COLUMN purchaseDate;
 -- Rename
 ALTER TABLE Shoes RENAME TO products;
 ```
